@@ -35,9 +35,9 @@ Although, the components along with their names do not match the commercial prod
 
 Each system in gem5 is described as a `board`.
 You can think of this `board` as the **motherboard** in a computer system.
-In this assignment we are going to be using a ready made board in gem5's standard library that we have renamed to `RISCVBoard`.
-This board will use a RISC-V-based processor.
-You can find the definition of `RISCVBoard` in `components/__init__.py`.
+In this assignment we are going to be using a ready made board in gem5's standard library that we have renamed to `MIPSBoard`.
+This board will use a MIPS-based processor.
+You can find the definition of `MIPSBoard` in `components/__init__.py`.
 You can see that it is based on `SimpleBoard` from the standard library.
 You can find the `SimpleBoard` source code and documentation in [`gem5/src/python/gem5/components/boards/simple_board.py`](/gem5/src/python/gem5/components/boards/simple_board.py).
 
@@ -56,7 +56,7 @@ Ready made `Processor` objects in the standard library represent the processing 
 In this assignment, we are going to use the `SingleCycleCPU`.
 You can find its source code in this repo in `components/__init__.py`.
 This processor is based on `SimpleProcessor` from the standard library.
-Whenever instantiated, it will create a `SimpleProcessor` with **one** `TimingSimpleCPU` core with `RISC-V` instruction set architecture (ISA).
+Whenever instantiated, it will create a `SimpleProcessor` with **one** `TimingSimpleCPU` core with `MIPS` instruction set architecture (ISA).
 The `TimingSimpleCPU` is a simple in-order CPU model that is designed to be fast to simulate.
 It assumes *no* time to execute instructions and only models the time to fetch the instruction from the cache.
 In practice, this results in a approximately 1 cycle for each ALU operation.
@@ -104,7 +104,7 @@ We will need to import the models for the different components that we aim to si
 Here is the code that imports all the mentioned models for ``.
 
 ```python
-from components import RISCVBoard, SingleCycleCPU, MESITwoLevelCache, DDR3
+from components import MIPSBoard, SingleCycleCPU, MESITwoLevelCache, DDR3
 ```
 
 ### Instantiate an object of the model
@@ -117,7 +117,7 @@ if __name__ == "__m5_main__":
     cpu = SingleCycleCPU()
     cache = MESITwoLevelCache()
     memory = DDR3()
-    board = RISCVBoard(
+    board = MIPSBoard(
         clk_freq="2GHz", processor=cpu, cache_hierarchy=cache, memory=memory
     )
 ```
@@ -134,7 +134,7 @@ These programs usually come in a package and are referred to as **benchmarks**. 
 [gem5 resources](https://resources.gem5.org/) is a project aiming to offer ready made resources compatible with the gem5 simulator.
 You can download and use compiled binaries from many benchmarks and small programs from gem5-resources.
 
-In this assignment, as mentioned before, we are going to use an already compiled `Hello World` binary for the RISC-V ISA from gem5-resources.
+In this assignment, as mentioned before, we are going to use an already compiled `Hello World` binary for the MIPS ISA from gem5-resources.
 There are many workloads available in gem5-resources, but we have provided some for you in the [`resources.json` file](../workloads/resources.json).
 
 ### Using a workload in gem5
@@ -151,7 +151,7 @@ workload = obtain_resource("hello_world_workload")
 ### Setting the workload for simulation
 
 Next, we will need to create an object of the workload we just imported and describe that this workload object is the object that we want to use for the **software** on our specified **hardware**.
-You can do that by calling `set_workload` function from `RISCVBoard`.
+You can do that by calling `set_workload` function from `MIPSBoard`.
 Here is the line of code that does that.
 
 ```python
@@ -216,7 +216,7 @@ print("Finished simulation.")
 Here is how the script looks like after adding all the necessary statements.
 
 ```python
-from components import RISCVBoard, SingleCycleCPU, MESITwoLevelCache, DDR3
+from components import MIPSBoard, SingleCycleCPU, MESITwoLevelCache, DDR3
 
 from gem5.resources.resource import obtain_resource
 from gem5.simulate.simulator import Simulator
@@ -225,7 +225,7 @@ if __name__ == "__m5_main__":
     cpu = SingleCycleCPU()
     cache = MESITwoLevelCache()
     memory = DDR3()
-    board = RISCVBoard(
+    board = MIPSBoard(
         clk_freq="2GHz", processor=cpu, cache_hierarchy=cache, memory=memory
     )
     board.set_workload(obtain_resource("hello_world_workload"))

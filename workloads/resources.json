@@ -10,7 +10,7 @@
         ],
         "resources": {
             "binary": {
-                "id": "riscv-hello",
+                "id": "mips-hello",
                 "resource_version": "1.0.0"
             }
         }
