@@ -8,6 +8,7 @@ Title: Getting started with gem5
 ## Table of Contents
 
 - [Introduction](#introduction)
+- [Github Classroom and Codespaces](#github-classroom-and-codespaces)
 - [gem5 and gem5's standard libary](#gem5-and-gem5s-standard-library-gem5-stdlib)
 - [Writing your own configuration script](#writing-your-own-configuration-script)
 - [Workload and gem5-resources](#workload-and-gem5-resources)
@@ -21,6 +22,12 @@ Title: Getting started with gem5
 
 In this assignment, we will use gem5's standard library to simulate the `Hello World` program in C++ on gem5.
 You will learn how to write your own configuration scripts to describe the computer system you need to simulate and pass your workloads and benchmark to the simulator.
+
+## Github Classroom and Codespaces
+
+This lab and all further labs require you to use Github Classroom and Github Codespaces. Submissions are graded based on commits submitted by the 48 hour late due date, any commits after the late due date will not be considered for grading. 
+
+To create a codespace within the Github repository, you can select the green <> Code button and select "Create codespace on main". It will likely take a few minutes to set up the codespace including the gem5 developer environment.
 
 ## gem5 and gem5's standard library (gem5-stdlib)
 
@@ -247,7 +254,7 @@ Now, open a terminal and run the command below.
 gem5 run.py
 ```
 
-After running this command in the terminal, you will see an output like below:
+After running this command in the terminal, you will see an output like below (Note this won't match your output as this simulation was done using a RISC-V board rather than MIPS):
 
 ```text
 Global frequency set at 1000000000000 ticks per second
