@@ -178,7 +178,7 @@ The following steps show how to import the simulator package and instantiate a s
 
 ### Import simulator
 
-In order to import the simulator package, add the following line to you configuration script.
+In order to import the simulator package, add the following line to your configuration script.
 
 ```python
 from gem5.simulate.simulator import Simulator
